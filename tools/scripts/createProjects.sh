@@ -37,12 +37,12 @@ function validate_inputs() {
   fi
 
   if [[ -z "$1" || -z "$2" ]]; then
-    echo "Usage: $0 <project_number> <tsv_file>"
+    echo "Usage: $0 <project_number> <project_file>"
     exit 1
   fi
 
   if [[ ! -f "$2" ]]; then
-    echo "TSV file not found: $2"
+    echo "Project file not found: $2"
     exit 1
   fi
 }
@@ -50,7 +50,7 @@ function validate_inputs() {
 function get_project_info() {
   local project_number=$1
   echo "Fetching project info..."
-  if ! gh project view $project_number --owner "@me" --format json; then
+  if ! gh project view $project_number --owner "@me" --format json | tee /dev/tty > $project_path; then
     echo "Failed to fetch project info"
     exit 1
   fi
@@ -58,10 +58,10 @@ function get_project_info() {
 
 function create_fields() {
   local project_number=$1
-  local tsv_file=$2
+  local project_file=$2
 
   echo "Creating project fields..."
-  fields=$(head -n1 $tsv_file)
+  fields=$(head -n1 $project_file)
 
   for field in $fields; do
     echo "Creating field: $field"
@@ -74,10 +74,10 @@ function create_fields() {
 
 function create_items() {
   local project_number=$1
-  local tsv_file=$2
+  local project_file=$2
 
   echo "Creating project items..."
-  titles=$(tail -n +2 $tsv_file | cut -f 1)
+  titles=$(tail -n +2 $project_file | cut -f 1)
 
   for title in $titles; do
     echo "Creating item: $title"
@@ -90,19 +90,19 @@ function create_items() {
 
 function main() {
   local project_number=${1:-2}
-  local tsv_path=${2:-.github/blueprint.tsv}
+  local project_path=${2:-.github/blueprint.json}
 
-  validate_inputs $project_number $tsv_path
+  validate_inputs $project_number $project_path
 
-  # Create TSV file if it doesn't exist
-  if [[ ! -f "$tsv_path" ]]; then
-    mkdir -p $(dirname "$tsv_path")
-    touch "$tsv_path"
+  # Create Project file if it doesn't exist
+  if [[ ! -f "$project_path" ]]; then
+    mkdir -p $(dirname "$project_path")
+    touch "$project_path"
   fi
 
   get_project_info $project_number
-  create_fields $project_number $tsv_path
-  create_items $project_number $tsv_path
+  create_fields $project_number $project_path
+  create_items $project_number $project_path
 
   echo "Project setup completed successfully!"
 }
