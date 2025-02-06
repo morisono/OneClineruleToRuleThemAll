@@ -1,4 +1,4 @@
-# Rules Management PoC
+# Project Rules for Agent not Cursor
 
 This repository is a Proof of Concept (PoC) for hierarchical rule management using nested rule files to guide AI agent behavior. The rules architecture is designed to be flexible, maintainable, and context-aware.
 
