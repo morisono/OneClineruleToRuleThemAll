@@ -1,0 +1,7 @@
+Title	Repository	Size	Estimate	Assignees	Start date	End date	Milestone	Status	Label	Priority	Sprint	Description
+Implement CI/CD Pipeline	devops-repo	8	5d	Alice,Bob	2025-02-10	2025-02-15	MVP	Open	DevOps,AI	High	Sprint 1	Setup automated CI/CD pipeline using GitHub Actions with integrated AI monitoring.
+Integrate SAST Scanning	security-repo	5	3d	Charlie	2025-02-12	2025-02-16	MVP	In Progress	Security,DevSecOps	Medium	Sprint 1	Integrate a static analysis tool for secure code scanning and automated vulnerability alerts.
+Develop AI-Driven Code Review	ai-agent	13	8d	Alice,David	2025-02-17	2025-02-24	Phase 2	Open	AI,Review	High	Sprint 2	Leverage an AI agent to automate code review processes, suggest improvements, and enforce coding standards.
+Refactor Legacy Modules	core-repo	8	4d	Bob,Charlie	2025-02-20	2025-02-26	Phase 2	Open	Refactor,TechDebt	Medium	Sprint 2	Refactor legacy code modules to modernize architecture and improve maintainability.
+Enhance Monitoring & Alerting	devops-repo	3	2d	Emily	2025-02-15	2025-02-17	MVP	Closed	Monitoring,Ops	Low	Sprint 1	Implement advanced logging and alerting systems with AI anomaly detection for proactive incident response.
+Deploy to Staging	ops-repo	2	1d	Team	2025-02-25	2025-02-25	Phase 2	Open	Deployment,Agile	High	Sprint 3	Deploy the latest build to the staging environment for comprehensive testing and validation.
