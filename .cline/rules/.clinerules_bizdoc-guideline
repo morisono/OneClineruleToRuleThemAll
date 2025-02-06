@@ -59,3 +59,94 @@ pushd docs; for d in (fd . -t d); set readme "$d/readme.md"; if not test -e $rea
 ```
 fd -i 'readme' | while read -l f; set d (dirname $f); tree -fi $d -d --noreport | perl -pe 's|^(.*)/([^/]+)\n$|- ]($1/$2)\n|' >> $f; end
 ```
+
+
+ただし
+
+
+## ディレクトリ構成
+
+一般に、プロジェクトドキュメントを必要とする場合、次の構成を組み立てます。
+```
+- [initialBusinessConcept](./docs/Planning/PLN-PLD-F0001/initialBusinessConcept.{md})
+- [initialBusinessPlan](./docs/Planning/PLN-PLD-F0002/initialBusinessPlan.{md})
+- [initialRoadmap](./docs/Planning/PLN-PLD-F0003/initialRoadmap.{md})
+- [initialSchedule](./docs/Planning/PLN-PLD-F0003/initialSchedule.{md})
+
+- [Estimation/Estimation](./reports/estimation/Estimation/Estimation.{csv,docx,md,xlsx})
+- [CostTable](./reports/estimation/costTable/CostTable.{csv,md,xlsx})
+
+- [LpConcept](./design/LpConcept.{html})
+
+- [BusinessRequirements](./reports/BusinessRequirements/BusinessRequirements/BusinessRequirements.{docx,md})
+- [FunctionsList](./reports/BusinessRequirements/FunctionsList/FunctionsList.{csv,md,xlsx})
+- [NonFunctionsList](./reports/BusinessRequirements/NonFunctionsList/NonFunctionsList.{csv,md,xlsx})
+- [RequirementsList](./reports/BusinessRequirements/RequirementsList/RequirementsList.{csv,md,xlsx})
+
+- [AsisOperationFlow](./reports/RequirementDefinition/asisOperationFlow/AsisOperationFlow.{md,png})
+- [BasicInfos](./reports/RequirementDefinition/basicInfos/BasicInfos.{docx,md})
+- [FunctionsList](./reports/RequirementDefinition/functionsList/FunctionsList.{csv,md,xlsx})
+- [NonFunctionsList](./reports/RequirementDefinition/nonFunctionsList/NonFunctionsList.{csv,md,xlsx})
+- [RequirementsList](./reports/RequirementDefinition/requirementsList/RequirementsList.{csv,md,xlsx})
+- [TobeOperationFlow](./reports/RequirementDefinition/tobeOperationFlow/TobeOperationFlow.{md,png})
+
+- [SystemDesign](./reports/SystemDesign/SystemDesign/SystemDesign.{docx,md})
+- [BackendHandlesList](./reports/SystemDesign/backendHandlesList/BackendHandlesList.{csv,md,xlsx})
+- [CommonComponent](./reports/SystemDesign/commonComponent/CommonComponent.{csv,md,xlsx})
+- [ErDiagram](./reports/SystemDesign/erDiagram/ErDiagram.{md,png})
+- [ScreenTransitions](./reports/SystemDesign/screenTransition/ScreenTransitions-{1,2,3,4,5}.{md,png})
+- [screenUI/ScreenUI](./reports/SystemDesign/screenUI/ScreenUI.{md})
+- [ScreensList](./reports/SystemDesign/screensList/ScreensList.{csv,md,xlsx})
+- [SequenceDiagrams](./reports/SystemDesign/sequenceDiagram/SequenceDiagrams-{1,2,3,4,5}.{md,png})
+- [SystemAbstraction](./reports/SystemDesign/systemAbstraction/SystemAbstraction.{docx,md})
+- [SystemArchitecture](./reports/SystemDesign/systemArchitecture/SystemArchitecture.{md,png})
+- [TableDefinition](./reports/SystemDesign/tableDefinition/TableDefinition.{csv,md,xlsx})
+
+- [SqlForSupabase](./SampleTableDefinition/SqlForSupabase.{txt})
+
+- [IntegrationTest](./reports/test/IntegrationTest/IntegrationTest.{csv,xlsx})
+- [SystemTest](./reports/test/SystemTest/system_test.{csv,xlsx})
+
+- [Definition](./docs/Prompts/DEV-MEM-F0101/Definition.{md})
+- [Overview](./docs/Prompts/DEV-MEM-F0102/Overview.{md})
+- [Details](./docs/Prompts/DEV-MEM-F0103/Details.{md})
+- [TestDesign](./docs/Prompts/DEV-MEM-F0104/TestDesign.{md})
+- [TestDesignFig](./docs/Prompts/DEV-MEM-F0104/TestDesignFig.{md})
+- [Coding](./docs/Prompts/DEV-MEM-F0105/Coding.{md})
+
+- [AsisOperationFlow](./ProjectData/AsisOperationFlow.{json})
+- [BackendHandlesList](./ProjectData/BackendHandlesList.{json})
+- [BasicInfos](./ProjectData/BasicInfos.{json})
+- [CommonComponent](./ProjectData/CommonComponent.{json})
+- [ErDiagram](./ProjectData/ErDiagram.{json})
+- [FunctionsList](./ProjectData/FunctionsList.{json})
+- [NonFunctionsList](./ProjectData/NonFunctionsList.{json})
+- [RequirementsList](./ProjectData/RequirementsList.{json})
+- [ScreenTransition](./ProjectData/ScreenTransition.{json})
+- [ScreenUi](./ProjectData/ScreenUi.{json})
+- [ScreensList](./ProjectData/ScreensList.{json})
+- [SequenceDiagram](./ProjectData/SequenceDiagram.{json})
+- [SystemAbstraction](./ProjectData/SystemAbstraction.{json})
+- [SystemArchitecture](./ProjectData/SystemArchitecture.{json})
+- [TableDefinition](./ProjectData/TableDefinition.{json})
+- [TobeOperationFlow](./ProjectData/TobeOperationFlow.{json})
+
+- [Backlog](./ProjectOutput/Backlog.{json})
+- [Roadmap](./ProjectOutput/Roadmap.{json})
+- [StatusBoard](./ProjectOutput/StatusBoard.{json})
+
+- [ProjectSeed](./tools/scripts/ProjectSeed.{sh})
+
+- [README](./README.{md})
+- [README.ja](./README.ja.{md})
+
+```
+
+## コーディング規約
+
+- スネークケースは、変数とメソッド名を作成するために使用されます。Pythonでプログラミングするときに最も多く発生し、また、テーブルや列の名前の作成に使用されるため、データベースを操作するときにも使用します。大文字のバージョンは、ほとんどのプログラミング言語で定数を宣言するために使用されます。
+- ケバブケースは、URLやスラグで使用します。
+- キャメルケースは、変数、関数、メソッド名を作成するために、Java、JavaScript、およびTypeScriptで使用されます。
+- パスカルケースは、クラスに名前を付けるために使用される使用されます。
+
+
